@@ -11,6 +11,7 @@ class Movies extends Component {
     genres: [],
     pageSize: 4,
     currentPage: 1,
+    selectedGenre: null,
   };
 
   handleDelete = (movie) => {
@@ -24,13 +25,23 @@ class Movies extends Component {
     this.setState({ currentPage: pageNum });
   };
 
+  handleSelectGenre = (genre) => {
+    this.setState({ selectedGenre: genre });
+  };
+
   componentDidMount() {
     this.setState({ movies: getMovies(), genres: getGenres() });
   }
 
   render() {
+    const filterByGenre = this.state.selectedGenre
+      ? this.state.movies.filter(
+          (m) => m.genre._id === this.state.selectedGenre._id
+        )
+      : this.state.movies;
+
     const paginatedMovies = paginate(
-      this.state.movies,
+      filterByGenre,
       this.state.currentPage,
       this.state.pageSize
     );
@@ -38,7 +49,11 @@ class Movies extends Component {
     return (
       <div className="row">
         <div className="col-3">
-          <ListGroup items={this.state.genres} />
+          <ListGroup
+            items={this.state.genres}
+            onSelectGenres={this.handleSelectGenre}
+            selectedGenre={this.state.selectedGenre}
+          />
         </div>
         <div className="col">
           <table className="table">
@@ -74,7 +89,7 @@ class Movies extends Component {
             </tbody>
           </table>
           <Pagination
-            itemCount={this.state.movies.length}
+            itemCount={filterByGenre.length}
             pageSize={this.state.pageSize}
             onPageChange={this.handlePageChange}
             currentPage={this.state.currentPage}

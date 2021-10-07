@@ -8,6 +8,7 @@ const Pagination = (props) => {
   console.log("Current Selected Page=" + currentPage);
   return (
     <div>
+      <h1>Total Number Of Movies Found : {itemCount}</h1>
       <nav aria-label="Page navigation example">
         <ul className="pagination">
           {pages.map((page) => (
