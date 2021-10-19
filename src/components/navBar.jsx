@@ -1,32 +1,33 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <ul className="nav nav-pills">
         <li className="nav-item">
-          <a href="#" className="nav-link active" aria-current="page">
+          <Link to="/" className="nav-link active" aria-current="page">
             Home
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link">
+          <Link to="/Features" className="nav-link">
             Features
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link">
+          <Link to="/Pricing" className="nav-link">
             Pricing
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link">
+          <Link to="/FAQs" className="nav-link">
             FAQs
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link">
+          <Link to="/About" className="nav-link">
             About
-          </a>
+          </Link>
         </li>
       </ul>
     </header>
